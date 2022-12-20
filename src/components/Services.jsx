@@ -43,6 +43,7 @@ const Services = () => {
   }, []);
 
   const deleteService = async (id) => {
+    console.log(id);
     try {
       if (
         window.confirm("Ви впевнені що хочете видалити процедуру назавжди?")
@@ -58,7 +59,7 @@ const Services = () => {
   };
 
   return isAuth ? (
-    <Grid container component={"section"}>
+    <Grid container component={"section"} direction="column">
       <Button
         variant={openForm ? "outlined" : "contained"}
         color={openForm ? "error" : "primary"}
@@ -101,9 +102,10 @@ const Services = () => {
                     variant="outlined"
                     size="small"
                     color="error"
-                    startIcon={<DeleteForeverIcon />}
-                    onClick={(_id) => deleteService(_id)}
-                  ></Button>
+                    onClick={() => deleteService(_id)}
+                  >
+                    <DeleteForeverIcon />
+                  </Button>
                 </AccordionDetails>
               </Accordion>
             );

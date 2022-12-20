@@ -51,8 +51,22 @@ const CreateService = () => {
         break;
       case 180:
         setDurationView("3 години");
+        break;
+      case 210:
+        setDurationView("3 години 30 хвилин");
+        break;
+      case 240:
+        setDurationView("4 години");
+        break;
     }
   }, [duration]);
+
+  const clearForm = () => {
+    setAddress("");
+    setDescription("");
+    setName("");
+    setPrice("");
+  };
 
   const createService = async () => {
     const serviceInfo = {
@@ -68,6 +82,7 @@ const CreateService = () => {
       await axios.post("/service", serviceInfo, {
         headers: { authorization: token },
       });
+      clearForm();
       setCreateSuccess(true);
       setTimeout(() => setCreateSuccess(false), 5000);
     } catch (error) {
@@ -156,12 +171,12 @@ const CreateService = () => {
             <Alert severity="success">Нову процедуру створено успішно!</Alert>
           ) : (
             <Button
-              variant="outlined"
+              variant="contained"
               size="large"
               onClick={createService}
               sx={{ margin: "20px auto" }}
             >
-              Створити
+              ✨ Створити
             </Button>
           )}
         </Box>
