@@ -69,6 +69,7 @@ const CreateService = () => {
   };
 
   const createService = async () => {
+    console.log(token);
     const serviceInfo = {
       name,
       description,

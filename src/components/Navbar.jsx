@@ -17,11 +17,13 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-
+import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import EventNoteIcon from "@mui/icons-material/EventNote";
 import ArchiveIcon from "@mui/icons-material/Archive";
+import BrushIcon from "@mui/icons-material/Brush";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/material";
 const drawerWidth = 240;
@@ -105,13 +107,26 @@ const Navbar = () => {
     setOpen(false);
   };
   const menuIcons = [
-    <ViewListIcon />,
-    <AdminPanelSettingsIcon />,
+    <EventNoteIcon />,
+    <BrushIcon />,
     <ArchiveIcon />,
+    <BeachAccessIcon />,
     <SettingsIcon />,
   ];
-  const routeLink = ["/records", "/services", "/archive", "/settings"];
-  const menuItemNames = ["Записи", "Мои процедуры", "Архив", "Настройки"];
+  const routeLink = [
+    "/records",
+    "/services",
+    "/archive",
+    "/vacations",
+    "/settings",
+  ];
+  const menuItemNames = [
+    "Записи",
+    "Мои процедуры",
+    "Архив",
+    "Выходные",
+    "Настройки",
+  ];
 
   return isAuth ? (
     <>

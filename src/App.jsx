@@ -11,6 +11,8 @@ import { Box, CssBaseline } from "@mui/material";
 import { styled, ThemeProvider } from "@mui/material/styles";
 import Archive from "./components/Archive.jsx";
 import { theme } from "./theme.js";
+import Vacation from "./components/Vacation.jsx";
+import Settings from "./components/Settings.jsx";
 export const AuthContext = React.createContext();
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
               <Route path="/records" element={<Records />} />
               <Route path="/services" element={<Services />} />
               <Route path="/archive" element={<Archive />} />
+              <Route path="/vacations" element={<Vacation />} />
+              <Route path="/settings" element={<Settings />} />
             </Routes>
           </Box>
         </Box>
