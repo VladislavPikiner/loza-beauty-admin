@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Paper, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
@@ -58,29 +58,61 @@ const Vacation = () => {
       {vacations &&
         vacations.map((vacation, i) => {
           return (
-            <Grid key={i} sx={{ display: "flex", gap: "15px" }}>
-              <Typography>{i + 1}</Typography>
-              <Box>
-                <Typography>
-                  Початок: {new Date(vacation.from).toLocaleDateString()}
-                </Typography>
-                <Typography>
-                  Завершення: {new Date(vacation.to).toLocaleDateString()}
-                </Typography>
-              </Box>
-              <Box>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  size="small"
-                  onClick={() => deleteVacation(vacation._id)}
-                  startIcon={<DeleteForeverIcon />}
-                  sx={{ fontSize: "12px" }}
-                >
-                  Видалити
-                </Button>
-              </Box>
-            </Grid>
+            <>
+              <Grid
+                key={i}
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                <Box sx={{ verticalAlign: "middle" }}>
+                  <Typography
+                    sx={{
+                      verticalAlign: "center",
+                      fontSize: "16px",
+                    }}
+                  >
+                    {i + 1}
+                  </Typography>
+                </Box>
+
+                <Box>
+                  <Box>
+                    <Typography color={"grey"} fontSize={"14px"}>
+                      Початок:
+                    </Typography>
+
+                    <Typography>
+                      {new Date(vacation.from).toLocaleDateString()}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography color={"grey"} fontSize={"14px"}>
+                      Завершення:
+                    </Typography>
+                    <Typography>
+                      {new Date(vacation.to).toLocaleDateString()}
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    size="small"
+                    onClick={() => deleteVacation(vacation._id)}
+                    startIcon={<DeleteForeverIcon />}
+                    sx={{ fontSize: "12px" }}
+                  >
+                    Видалити
+                  </Button>
+                </Box>
+              </Grid>
+              <Divider />
+            </>
           );
         })}
     </Grid>

@@ -60,6 +60,7 @@ const Login = () => {
           sx={{ maxWidth: "290px" }}
         />
         <TextField
+          variant="outlined"
           label="Пароль"
           value={password}
           onChange={(e) => setPassword(e.currentTarget.value)}

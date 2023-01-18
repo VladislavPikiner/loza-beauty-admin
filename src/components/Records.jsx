@@ -54,7 +54,6 @@ const Records = () => {
     >
       {records &&
         records.map((record) => {
-          console.log(record);
           return (
             <Box key={record._id}>
               <Accordion>
@@ -62,7 +61,14 @@ const Records = () => {
                   <Typography sx={{ marginTop: "10px" }}>
                     {record.service.name}
                   </Typography>
-                  <Typography color={"grey"} sx={{ marginLeft: "40px" }}>
+                  <Typography
+                    color={"grey"}
+                    sx={{
+                      marginLeft: "30px",
+                      paddingTop: "12px",
+                      textAlign: "center",
+                    }}
+                  >
                     {
                       new Date(record.startTime)
                         .toLocaleDateString()
@@ -75,19 +81,32 @@ const Records = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Grid
-                    sx={{ display: "flex", justifyContent: "space-between" }}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      gap: "25px",
+                    }}
                   >
                     <Box>
-                      <Typography>Клієнт</Typography>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Клієнт
+                      </Typography>
                       <Typography>+{record.clientPhone}</Typography>
                     </Box>
                     <Box>
-                      <Typography>Ціна</Typography>
-                      <Typography>{record.service.price}</Typography>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Ціна
+                      </Typography>
+                      <Typography>{record.service.price} грн</Typography>
                     </Box>
                   </Grid>
                   <Grid
-                    sx={{ display: "flex", justifyContent: "space-between" }}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      gap: "15px",
+                      marginTop: "20px",
+                    }}
                   >
                     <Button
                       color="success"
@@ -95,6 +114,7 @@ const Records = () => {
                       size="small"
                       startIcon={<AssignmentTurnedInIcon />}
                       onClick={() => updateRecord(record._id)}
+                      sx={{ fontSize: "14px" }}
                     >
                       виконано
                     </Button>
@@ -104,6 +124,7 @@ const Records = () => {
                       size="small"
                       startIcon={<DeleteForeverIcon />}
                       onClick={() => deleteRecord(record._id)}
+                      sx={{ fontSize: "14px" }}
                     >
                       скасувати
                     </Button>

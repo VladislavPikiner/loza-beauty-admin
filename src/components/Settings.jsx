@@ -1,7 +1,8 @@
+import { Typography } from "@mui/material";
 import React from "react";
 
 const Settings = () => {
-  return <div>Loading...</div>;
+  return <Typography sx={{ margin: "50px 100px" }}>Loading...</Typography>;
 };
 
 export default Settings;

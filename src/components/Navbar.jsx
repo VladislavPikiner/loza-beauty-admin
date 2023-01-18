@@ -98,6 +98,7 @@ const Navbar = () => {
   const { isAuth } = useContext(AuthContext);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [mainTitle, setMainTitle] = useState(new Date().toLocaleDateString());
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -154,7 +155,7 @@ const Navbar = () => {
             }}
           >
             <Typography variant="h6" noWrap component="div">
-              Irina Loza
+              {mainTitle}
             </Typography>
           </Box>
         </Toolbar>
@@ -184,6 +185,7 @@ const Navbar = () => {
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  onClick={() => setMainTitle(text)}
                 >
                   <ListItemIcon
                     sx={{

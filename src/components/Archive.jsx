@@ -42,7 +42,14 @@ const Archive = () => {
                   <Typography sx={{ marginTop: "10px" }}>
                     {record.service.name}
                   </Typography>
-                  <Typography color={"grey"} sx={{ marginLeft: "40px" }}>
+                  <Typography
+                    color={"grey"}
+                    sx={{
+                      marginLeft: "30px",
+                      paddingTop: "12px",
+                      textAlign: "center",
+                    }}
+                  >
                     {
                       new Date(record.startTime)
                         .toLocaleDateString()
@@ -55,15 +62,25 @@ const Archive = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Grid
-                    sx={{ display: "flex", justifyContent: "space-between" }}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      gap: "25px",
+                    }}
                   >
                     <Box>
-                      <Typography>Клієнт</Typography>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Клієнт
+                      </Typography>
                       <Typography>+{record.clientPhone}</Typography>
                     </Box>
                     <Box>
-                      <Typography>Ціна</Typography>
-                      <Typography>{record.service.price}</Typography>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Ціна
+                      </Typography>
+                      <Typography fontSize={"16px"}>
+                        {record.service.price} грн
+                      </Typography>
                     </Box>
                   </Grid>
                 </AccordionDetails>

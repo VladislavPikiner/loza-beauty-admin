@@ -4,12 +4,14 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import ru from "date-fns/locale/ru";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Button, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import axios from "../axios.js";
 import AddIcon from "@mui/icons-material/Add";
 const CreateVacation = () => {
   const initialDate = new Date();
-  const [fromDate, setFromDate] = useState(new Date());
+  const [fromDate, setFromDate] = useState(
+    new Date(initialDate.setDate(initialDate.getDate() + 1))
+  );
   const [toDate, setToDate] = useState(
     new Date(initialDate.setDate(initialDate.getDate() + 1))
   );
@@ -32,7 +34,15 @@ const CreateVacation = () => {
   };
 
   return (
-    <>
+    <Grid
+      sx={{
+        display: "grid",
+        gap: "15px",
+        maxWidth: "270px",
+        alignSelf: "center",
+        marginBlock: "25px",
+      }}
+    >
       <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
         <DatePicker
           disablePast
@@ -62,7 +72,7 @@ const CreateVacation = () => {
       >
         Добавить отпуск
       </Button>
-    </>
+    </Grid>
   );
 };
 

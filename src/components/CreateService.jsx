@@ -93,11 +93,11 @@ const CreateService = () => {
   };
 
   return isAuth ? (
-    <Grid container sx={{ margin: "10px" }}>
+    <Grid container>
       <Box
         sx={{
           margin: "5px auto",
-          padding: "5px",
+          padding: "10px",
           textAlign: "center",
           height: "600px",
           display: "flex",
@@ -105,7 +105,6 @@ const CreateService = () => {
           justifyContent: "space-between",
           border: "1px solid #242424",
           borderRadius: "5px",
-          boxShadow: "0 1px 3px rgba(0,0,0,.6)",
         }}
       >
         <TextField
@@ -127,7 +126,7 @@ const CreateService = () => {
           onChange={(e) => setPrice(e.currentTarget.value)}
           size="small"
         />
-        <FormControl>
+        <FormControl sx={{ paddingTop: "7px" }}>
           <InputLabel id="selectAddress">Адреса надання</InputLabel>
           <Select
             labelId="selectAddress"
@@ -172,12 +171,14 @@ const CreateService = () => {
             <Alert severity="success">Нову процедуру створено успішно!</Alert>
           ) : (
             <Button
-              variant="contained"
+              color={"success"}
+              variant="outlined"
               size="large"
               onClick={createService}
               sx={{ margin: "20px auto" }}
+              startIcon={<AddIcon />}
             >
-              ✨ Створити
+              Створити
             </Button>
           )}
         </Box>

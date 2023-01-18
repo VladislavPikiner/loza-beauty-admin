@@ -94,18 +94,50 @@ const Services = () => {
                   <Typography>{name}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>{description}</Typography>
-                  <Typography>{durationView}</Typography>
-                  <Typography>{address}</Typography>
-                  <Typography>{price} гривен</Typography>
-                  <Button
-                    variant="outlined"
-                    size="small"
-                    color="error"
-                    onClick={() => deleteService(_id)}
+                  <Typography color={"grey"} fontSize={"14px"}>
+                    Опис процедури
+                  </Typography>
+                  <Typography fontSize={"18px"}>{description}</Typography>
+                  <Typography
+                    color={"grey"}
+                    fontSize={"14px"}
+                    marginTop={"5px"}
                   >
-                    <DeleteForeverIcon />
-                  </Button>
+                    Тривалість
+                  </Typography>
+                  <Typography fontSize={"16px"}>{durationView}</Typography>
+                  <Typography
+                    color={"grey"}
+                    fontSize={"14px"}
+                    marginTop={"5px"}
+                  >
+                    Адреса салону:
+                  </Typography>
+                  <Typography fontSize={"16px"}>{address}</Typography>
+                  <Typography
+                    color={"grey"}
+                    fontSize={"14px"}
+                    marginTop={"5px"}
+                  >
+                    Ціна
+                  </Typography>
+                  <Typography fontSize={"16px"}>{price} гривень</Typography>
+                  <Box sx={{ textAlign: "center" }}>
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      color="error"
+                      onClick={() => deleteService(_id)}
+                      startIcon={<DeleteForeverIcon />}
+                      sx={{
+                        fontSize: "16px",
+                        textAlign: "center",
+                        marginTop: "15px",
+                      }}
+                    >
+                      видалити
+                    </Button>
+                  </Box>
                 </AccordionDetails>
               </Accordion>
             );
