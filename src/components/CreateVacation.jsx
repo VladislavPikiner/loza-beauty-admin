@@ -33,6 +33,14 @@ const CreateVacation = () => {
     await axios.post("/vacations", unavailableSlot);
   };
 
+  const dateTimePaperPropsStyles = {
+    sx: {
+      ".MuiPickersCalendarHeader-label": {
+        marginRight: "0",
+      },
+    },
+  };
+
   return (
     <Grid
       sx={{
@@ -52,6 +60,7 @@ const CreateVacation = () => {
             setFromDate(newValue);
           }}
           renderInput={(params) => <TextField {...params} />}
+          PaperProps={dateTimePaperPropsStyles}
         />
       </LocalizationProvider>
       <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
