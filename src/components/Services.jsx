@@ -83,6 +83,7 @@ const Services = () => {
             durationView,
             address,
             price,
+            consumable,
           }) => {
             return (
               <Accordion key={_id}>
@@ -94,34 +95,57 @@ const Services = () => {
                   <Typography>{name}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography color={"grey"} fontSize={"14px"}>
-                    Опис процедури
-                  </Typography>
-                  <Typography fontSize={"18px"}>{description}</Typography>
-                  <Typography
-                    color={"grey"}
-                    fontSize={"14px"}
-                    marginTop={"5px"}
+                  <Grid
+                    container
+                    sx={{
+                      justifyContent: "space-between",
+                      alignItems: "self-start",
+                      gap: "15px",
+                    }}
                   >
-                    Тривалість
-                  </Typography>
-                  <Typography fontSize={"16px"}>{durationView}</Typography>
-                  <Typography
-                    color={"grey"}
-                    fontSize={"14px"}
-                    marginTop={"5px"}
-                  >
-                    Адреса салону:
-                  </Typography>
-                  <Typography fontSize={"16px"}>{address}</Typography>
-                  <Typography
-                    color={"grey"}
-                    fontSize={"14px"}
-                    marginTop={"5px"}
-                  >
-                    Ціна
-                  </Typography>
-                  <Typography fontSize={"16px"}>{price} гривень</Typography>
+                    <Grid item>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Опис процедури
+                      </Typography>
+                      <Typography fontSize={"18px"}>{description}</Typography>
+                    </Grid>
+
+                    <Grid item>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Тривалість
+                      </Typography>
+                      <Typography fontSize={"16px"}>{durationView}</Typography>
+                    </Grid>
+
+                    <Grid item>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Адреса салону:
+                      </Typography>
+                      <Typography fontSize={"16px"}>{address}</Typography>
+                    </Grid>
+
+                    <Grid item>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Матеріли
+                      </Typography>
+                      {consumable.map((item) => {
+                        return (
+                          <Typography key={item._id} fontSize={"12px"}>
+                            {item.consumableId.name} {item.amount}
+                            {item.consumableId.units}
+                          </Typography>
+                        );
+                      })}
+                    </Grid>
+
+                    <Grid item>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Ціна
+                      </Typography>
+                      <Typography fontSize={"16px"}>{price}грн</Typography>
+                    </Grid>
+                  </Grid>
+
                   <Box sx={{ textAlign: "center" }}>
                     <Button
                       variant="outlined"
@@ -130,7 +154,7 @@ const Services = () => {
                       onClick={() => deleteService(_id)}
                       startIcon={<DeleteForeverIcon />}
                       sx={{
-                        fontSize: "16px",
+                        fontSize: "12px",
                         textAlign: "center",
                         marginTop: "15px",
                       }}

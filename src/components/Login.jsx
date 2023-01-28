@@ -56,6 +56,7 @@ const Login = () => {
         <TextField
           label="Логін"
           value={login}
+          variant="outlined"
           onChange={(e) => setLogin(e.currentTarget.value)}
           sx={{ maxWidth: "290px" }}
         />

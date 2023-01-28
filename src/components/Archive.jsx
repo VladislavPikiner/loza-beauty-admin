@@ -39,49 +39,55 @@ const Archive = () => {
             <Box key={record._id}>
               <Accordion>
                 <AccordionSummary>
-                  <Typography sx={{ marginTop: "10px" }}>
-                    {record.service.name}
-                  </Typography>
-                  <Typography
-                    color={"grey"}
+                  <Box
                     sx={{
-                      marginLeft: "30px",
-                      paddingTop: "12px",
-                      textAlign: "center",
+                      width: "90%",
+                      display: "flex",
+                      justifyContent: "space-between",
                     }}
                   >
-                    {
-                      new Date(record.startTime)
-                        .toLocaleDateString()
-                        .split("T")[0]
-                    }
-                    <br />
-                    {record.startTime.split("T")[1].slice(0, -8)}-
-                    {record.endTime.split("T")[1].slice(0, -8)}
-                  </Typography>
+                    <Typography sx={{ marginTop: "10px" }}>
+                      {record.service.name}
+                    </Typography>
+                    <Typography
+                      color={"grey"}
+                      sx={{
+                        marginLeft: "30px",
+                        paddingTop: "12px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {
+                        new Date(record.startTime)
+                          .toLocaleDateString()
+                          .split("T")[0]
+                      }
+                      <br />
+                      {record.startTime.split("T")[1].slice(0, -8)}-
+                      {record.endTime.split("T")[1].slice(0, -8)}
+                    </Typography>
+                  </Box>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Grid
-                    sx={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      gap: "25px",
-                    }}
-                  >
-                    <Box>
+                  <Grid container gap={"15px"}>
+                    <Grid item>
                       <Typography color={"grey"} fontSize={"14px"}>
                         Клієнт
                       </Typography>
                       <Typography>+{record.clientPhone}</Typography>
-                    </Box>
-                    <Box>
+                    </Grid>
+                    <Grid item>
                       <Typography color={"grey"} fontSize={"14px"}>
                         Ціна
                       </Typography>
-                      <Typography fontSize={"16px"}>
-                        {record.service.price} грн
+                      <Typography>{record.service.price} грн</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Комментар
                       </Typography>
-                    </Box>
+                      <Typography>{record.comment}</Typography>
+                    </Grid>
                   </Grid>
                 </AccordionDetails>
               </Accordion>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/Login.jsx";
 import "./App.css";
-import CreateService from "./components/CreateService.jsx";
+
 import Services from "./components/Services.jsx";
 import Records from "./components/Records.jsx";
 import Home from "./components/Home.jsx";
@@ -12,7 +12,10 @@ import { styled, ThemeProvider } from "@mui/material/styles";
 import Archive from "./components/Archive.jsx";
 import { theme } from "./theme.js";
 import Vacation from "./components/Vacation.jsx";
-import Settings from "./components/Settings.jsx";
+
+import Consumable from "./components/Consumable.jsx";
+import Supply from "./components/Supply.jsx";
+
 export const AuthContext = React.createContext();
 
 function App() {
@@ -32,7 +35,8 @@ function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/archive" element={<Archive />} />
               <Route path="/vacations" element={<Vacation />} />
-              <Route path="/settings" element={<Settings />} />
+              <Route path="/consumable" element={<Consumable />} />
+              <Route path="/supply" element={<Supply />} />
             </Routes>
           </Box>
         </Box>

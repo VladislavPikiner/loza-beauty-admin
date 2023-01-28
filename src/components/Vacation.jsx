@@ -58,63 +58,64 @@ const Vacation = () => {
       {vacations &&
         vacations.map((vacation, i) => {
           return (
-            <>
-              <Grid
-                key={i}
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  marginBottom: "10px",
-                }}
-              >
+            <Grid
+              key={i}
+              sx={{
+                display: "flex",
+                justifyContent: "space-around",
+                gap: "3px",
+                alignItems: "center",
+                marginBottom: "10px",
+                paddingX: "5px",
+              }}
+              container
+            >
+              <Grid item>
                 <Box sx={{ verticalAlign: "middle" }}>
                   <Typography
                     sx={{
-                      verticalAlign: "center",
                       fontSize: "16px",
                     }}
                   >
                     {i + 1}
                   </Typography>
                 </Box>
-
-                <Box>
-                  <Box>
-                    <Typography color={"grey"} fontSize={"14px"}>
-                      Початок:
-                    </Typography>
-
-                    <Typography>
-                      {new Date(vacation.from).toLocaleDateString()}
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <Typography color={"grey"} fontSize={"14px"}>
-                      Завершення:
-                    </Typography>
-                    <Typography>
-                      {new Date(vacation.to).toLocaleDateString()}
-                    </Typography>
-                  </Box>
-                </Box>
-                <Box>
-                  <Button
-                    variant="outlined"
-                    color="error"
-                    size="small"
-                    onClick={() => deleteVacation(vacation._id)}
-                    startIcon={<DeleteForeverIcon />}
-                    sx={{ fontSize: "12px" }}
-                  >
-                    Видалити
-                  </Button>
-                </Box>
               </Grid>
-              <Divider />
-            </>
+
+              <Grid item>
+                <Typography color={"grey"} fontSize={"14px"}>
+                  Початок:
+                </Typography>
+                <Typography>
+                  {new Date(vacation.from).toLocaleDateString()}
+                </Typography>
+              </Grid>
+
+              <Grid item>
+                <Typography color={"grey"} fontSize={"14px"}>
+                  Завершення:
+                </Typography>
+                <Typography>
+                  {new Date(vacation.to).toLocaleDateString()}
+                </Typography>
+              </Grid>
+
+              <Grid item>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  size="small"
+                  onClick={() => deleteVacation(vacation._id)}
+                  startIcon={<DeleteForeverIcon />}
+                  sx={{ fontSize: "12px" }}
+                >
+                  Видалити
+                </Button>
+              </Grid>
+            </Grid>
           );
         })}
+      <Divider />
     </Grid>
   ) : (
     <Navigate to="/" replace={true} />

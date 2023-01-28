@@ -56,55 +56,78 @@ const Records = () => {
         records.map((record) => {
           return (
             <Box key={record._id}>
+              <Typography></Typography>
               <Accordion>
                 <AccordionSummary>
-                  <Typography sx={{ marginTop: "10px" }}>
-                    {record.service.name}
-                  </Typography>
-                  <Typography
-                    color={"grey"}
+                  <Box
                     sx={{
-                      marginLeft: "30px",
-                      paddingTop: "12px",
-                      textAlign: "center",
+                      width: "90%",
+                      display: "flex",
+                      justifyContent: "space-around",
                     }}
                   >
-                    {
-                      new Date(record.startTime)
-                        .toLocaleDateString()
-                        .split("T")[0]
-                    }
-                    <br />
-                    {record.startTime.split("T")[1].slice(0, -8)}-
-                    {record.endTime.split("T")[1].slice(0, -8)}
-                  </Typography>
+                    <Typography sx={{ marginTop: "10px" }}>
+                      {record.service.name}
+                    </Typography>
+                    <Typography
+                      color={"grey"}
+                      sx={{
+                        marginLeft: "30px",
+                        paddingTop: "12px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {
+                        new Date(record.startTime)
+                          .toLocaleDateString()
+                          .split("T")[0]
+                      }
+                      <br />
+                      {record.startTime.split("T")[1].slice(0, -8)}-
+                      {record.endTime.split("T")[1].slice(0, -8)}
+                    </Typography>
+                  </Box>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Grid
+                    container
                     sx={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      gap: "25px",
+                      justifyContent: "space-between",
+                      gap: "15px",
+                      width: "90%",
+                      margin: "0 auto",
                     }}
                   >
-                    <Box>
+                    <Grid item>
                       <Typography color={"grey"} fontSize={"14px"}>
                         Клієнт
                       </Typography>
+                      <Typography>{record.clientName}</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Контакт
+                      </Typography>
                       <Typography>+{record.clientPhone}</Typography>
-                    </Box>
-                    <Box>
+                    </Grid>
+                    <Grid item>
                       <Typography color={"grey"} fontSize={"14px"}>
                         Ціна
                       </Typography>
                       <Typography>{record.service.price} грн</Typography>
-                    </Box>
+                    </Grid>
+                    <Grid item>
+                      <Typography color={"grey"} fontSize={"14px"}>
+                        Комментар
+                      </Typography>
+                      <Typography>{record.comment}</Typography>
+                    </Grid>
                   </Grid>
                   <Grid
                     sx={{
                       display: "flex",
                       justifyContent: "flex-start",
-                      gap: "15px",
+                      gap: "25px",
                       marginTop: "20px",
                     }}
                   >

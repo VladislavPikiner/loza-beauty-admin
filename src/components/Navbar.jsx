@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../App.jsx";
 import { styled, useTheme } from "@mui/material/styles";
-
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
@@ -18,14 +16,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import BeachAccessIcon from "@mui/icons-material/BeachAccess";
-import SettingsIcon from "@mui/icons-material/Settings";
-import ViewListIcon from "@mui/icons-material/ViewList";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import BrushIcon from "@mui/icons-material/Brush";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/material";
+import HandymanIcon from "@mui/icons-material/Handyman";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -94,7 +91,6 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const Navbar = () => {
-  const yesterday = new Date(Date.now());
   const { isAuth } = useContext(AuthContext);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -110,23 +106,26 @@ const Navbar = () => {
   const menuIcons = [
     <EventNoteIcon />,
     <BrushIcon />,
-    <ArchiveIcon />,
+    <HandymanIcon />,
+    <LocalShippingIcon />,
     <BeachAccessIcon />,
-    <SettingsIcon />,
+    <ArchiveIcon />,
   ];
   const routeLink = [
     "/records",
     "/services",
-    "/archive",
+    "/consumable",
+    "/supply",
     "/vacations",
-    "/settings",
+    "/archive",
   ];
   const menuItemNames = [
     "Записи",
-    "Мои процедуры",
-    "Архив",
-    "Выходные",
-    "Настройки",
+    "Процедури",
+    "Матеріали",
+    "Надходження",
+    "Вихідні",
+    "Архів",
   ];
 
   return isAuth ? (
