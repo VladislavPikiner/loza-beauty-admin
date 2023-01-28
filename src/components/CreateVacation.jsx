@@ -72,6 +72,7 @@ const CreateVacation = () => {
             setToDate(newValue);
           }}
           renderInput={(params) => <TextField {...params} />}
+          PaperProps={dateTimePaperPropsStyles}
         />
       </LocalizationProvider>
       <Button
