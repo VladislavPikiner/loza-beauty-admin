@@ -9,6 +9,7 @@ import {
   InputLabel,
   Divider,
   Alert,
+  IconButton,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
@@ -18,19 +19,39 @@ import { AuthContext } from "../App";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import axios from "../axios.js";
+import InputFileUpload from "./UploadButton";
+import { styled } from "@mui/material/styles";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { Close } from "@mui/icons-material";
+import {
+  addressList,
+  backendURL,
+  durationStep,
+  maxDuration,
+} from "./serviceConfig";
 
 const token = window.localStorage.getItem("token");
 
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+  width: 1,
+});
+
 const CreateService = () => {
-  const durationStep = 1800000;
-  const maxDuration = 14400000;
   const { isAuth } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [duration, setDuration] = useState(durationStep);
-  const [price, setPrice] = useState("");
   const [durationView, setDurationView] = useState("");
+  const [price, setPrice] = useState("");
   const [createSuccess, setCreateSuccess] = useState(false);
   const [currentConsumable, setCurrentConsumable] = useState("");
   const [consumables, setConsumables] = useState([]);
@@ -38,6 +59,8 @@ const CreateService = () => {
   const [currentAmount, setCurrentAmount] = useState("");
   const [consumableList, setConsumableList] = useState([]);
   const [currentName, setCurrentName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [isImage, setIsImage] = useState(false);
 
   useEffect(() => {
     async function fetchConsumable() {
@@ -93,6 +116,7 @@ const CreateService = () => {
       address,
       price,
       consumable,
+      imageUrl,
     };
     console.log(serviceInfo);
     try {
@@ -116,6 +140,8 @@ const CreateService = () => {
     setDescription("");
     setName("");
     setPrice("");
+    setIsImage(false);
+    setImageUrl("");
   };
 
   const cleanConsumableForm = () => {
@@ -150,12 +176,35 @@ const CreateService = () => {
     console.log(consumableList);
   };
 
+  const handleChangeFile = async (event) => {
+    try {
+      const formData = new FormData();
+      const imageFile = event.target.files[0];
+      formData.append("image", imageFile);
+      const { data } = await axios.post("/uploads", formData);
+      console.log(data);
+      setImageUrl(data.url);
+      setIsImage(true);
+    } catch (error) {
+      console.error(error);
+      alert("Не удалось загрузить изображение:" + error);
+    }
+  };
+
+  const deleteFile = async () => {
+    await axios.delete("/uploads", {
+      data: { imageUrl: "." + imageUrl },
+    });
+    setIsImage(false);
+    setImageUrl("");
+  };
+
   return isAuth ? (
     <Grid container>
       <Box
         sx={{
           margin: "10px auto",
-          padding: "5px",
+          padding: "25px",
           textAlign: "center",
           display: "flex",
           flexDirection: "column",
@@ -193,8 +242,11 @@ const CreateService = () => {
             label="Адреса надання "
             size="small"
           >
-            <MenuItem value={"taromskoe"}>taromskoe</MenuItem>
-            <MenuItem value={"centr"}>centr</MenuItem>
+            {addressList.map((address) => (
+              <MenuItem key={address} value={address}>
+                {address}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <Box>
@@ -294,6 +346,40 @@ const CreateService = () => {
             додати
           </Button>
 
+          <FormControl
+            formEncType="multipart/form-data"
+            sx={{
+              display: "block",
+              padding: "2px",
+              marginBlock: "10px",
+            }}
+          >
+            {isImage ? (
+              <>
+                <Alert severity="success">Фото завантажено успішно!</Alert>
+                <img
+                  src={backendURL + imageUrl}
+                  alt="service image"
+                  style={{ width: "250px", margin: "0 auto", display: "block" }}
+                />
+                <IconButton color="error" size="small" onClick={deleteFile}>
+                  <Close sx={{ fontSize: "1rem" }} />
+                </IconButton>
+              </>
+            ) : (
+              <Button
+                component="label"
+                variant="contained"
+                startIcon={<CloudUploadIcon />}
+                type="submit"
+                sx={{ fontSize: "1rem" }}
+              >
+                завантажити фото
+                <VisuallyHiddenInput type="file" onChange={handleChangeFile} />
+              </Button>
+            )}
+          </FormControl>
+
           {consumableList &&
             consumableList.map((el) => {
               return (
@@ -338,7 +424,6 @@ const CreateService = () => {
               size="large"
               onClick={createService}
               sx={{ margin: "20px auto" }}
-              startIcon={<AddIcon />}
             >
               Створити
             </Button>

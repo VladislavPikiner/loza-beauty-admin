@@ -80,7 +80,11 @@ const Supply = () => {
                     paddingX: "5px",
                   }}
                 >
-                  <Typography>{item.consumable.name}</Typography>
+                  <Typography>
+                    {item.consumable
+                      ? item.consumable.name
+                      : "матеріал видалено"}
+                  </Typography>
                   <Typography color={"text.secondary"}>
                     {new Date(item.createdAt).toLocaleDateString()}
                   </Typography>
@@ -103,7 +107,7 @@ const Supply = () => {
                       Одиниці виміру
                     </Typography>
                     <Typography fontSize={"16px"}>
-                      {item.consumable.units}
+                      {item.consumable && item.consumable.units}
                     </Typography>
                   </Grid>
                   <Grid item>
@@ -117,7 +121,7 @@ const Supply = () => {
                     </Typography>
                     <Typography fontSize={"16px"}>
                       {(item.cost / item.amount).toFixed(2)} грн /{" "}
-                      {item.consumable.units}
+                      {item.consumable && item.consumable.units}
                     </Typography>
                   </Grid>
                   <Box sx={{ textAlign: "end" }}>

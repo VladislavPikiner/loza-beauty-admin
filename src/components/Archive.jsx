@@ -41,7 +41,6 @@ const Archive = () => {
                 <AccordionSummary>
                   <Box
                     sx={{
-                      width: "90%",
                       display: "flex",
                       justifyContent: "space-between",
                     }}
@@ -57,14 +56,9 @@ const Archive = () => {
                         textAlign: "center",
                       }}
                     >
-                      {
-                        new Date(record.startTime)
-                          .toLocaleDateString()
-                          .split("T")[0]
-                      }
+                      {record.startDate}
                       <br />
-                      {record.startTime.split("T")[1].slice(0, -8)}-
-                      {record.endTime.split("T")[1].slice(0, -8)}
+                      {record.startTime}-{record.endTime}
                     </Typography>
                   </Box>
                 </AccordionSummary>

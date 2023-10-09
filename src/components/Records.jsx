@@ -18,17 +18,23 @@ const Records = () => {
   const { isAuth } = useContext(AuthContext);
   const [records, setRecords] = useState([]);
   useEffect(() => {
-    async function fetchRecords() {
-      const res = await axios.get("/record");
-      setRecords(res.data.reverse());
+    try {
+      async function fetchRecords() {
+        const res = await axios.get("/record");
+        const recordsFromServer = res.data.reverse();
+
+        setRecords(recordsFromServer);
+      }
+      fetchRecords();
+    } catch (error) {
+      console.log("Records inaccessible:" + error);
     }
-    fetchRecords();
   }, []);
 
   const deleteRecord = async (id) => {
     try {
       if (window.confirm("Ви впевнені що хочете видалити запис назавжди?")) {
-        await axios.delete(`/record/${id}`);
+        await axios.patch(`/record/${id}`);
         setRecords((prev) => prev.filter((record) => record._id !== id));
       }
     } catch (error) {
@@ -56,7 +62,6 @@ const Records = () => {
         records.map((record) => {
           return (
             <Box key={record._id}>
-              <Typography></Typography>
               <Accordion>
                 <AccordionSummary>
                   <Box

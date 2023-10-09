@@ -44,9 +44,7 @@ const Consumable = () => {
   const deleteConsumable = async (id) => {
     console.log(id);
     try {
-      if (
-        window.confirm("Ви впевнені що хочете видалити процедуру назавжди?")
-      ) {
+      if (window.confirm("Ви впевнені що хочете видалити матеріал назавжди?")) {
         axios.delete(`/consumable/${id}`, {
           headers: { authorization: token },
         });
